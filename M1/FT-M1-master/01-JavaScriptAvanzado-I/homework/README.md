@@ -122,12 +122,12 @@ Y el de este código? :
 var snack = 'Meow Mix';
 
 function getFood(food) {
-   //aca estaira declarando var snak; por es es undefined
+   //aca estaria declarando var snak por hoisting; por eso es undefined
     if (food) {
         var snack = 'Friskies';
         return snack;
     }
-    return snack;//und
+    return snack;//und hoisting a snack ya que no se declara
 }
 
 getFood(false);
@@ -155,7 +155,7 @@ console.log(obj.prop.getFullname());//AdeRosa
 var test = obj.prop.getFullname;//a test le asigno la funcion
 
 console.log(test());//undefined en Node, Juan Perez en la consola del navegador
-                    //Juan Perez si declaro en el contexto global 'gloabl.fullname = 'Juan Perez';' en Node
+                    //Juan Perez si declaro en el contexto global 'global.fullname = 'Juan Perez';' en Node
 ```
 
 ### Event loop
