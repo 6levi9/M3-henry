@@ -1,4 +1,7 @@
 'use strict'
+
+const { queue } = require("@11ty/eleventy-cache-assets")
+
 // Las funciones nFactoria y nFibonacci deben resolverlas
 // usando recursión. Una vez realizadas de esa forma pueden probar hacerlas
 // de forma iterativa pero esto último no es obligatorio.
@@ -7,6 +10,9 @@ function nFactorial(n) {
   // devolvé el factorial de n (n!)
   // ej:
   // el factorial de 3 es 6 (3 * 2 * 1)
+  if(n < 0) return 0
+  if(n === 0 || n === 1) return 1
+  return n * nFactorial(n-1)
 }
 
 function nFibonacci(n) {
@@ -15,7 +21,9 @@ function nFibonacci(n) {
   // nFibonacci(0) // 0  // el elemento 0 es cero
   // nFibonacci(1) // 1 // el elemento 1 es 1
   // nFibonacci(6) // 1 // el elemento 6 es 8
-
+  if (n === 0) return 0
+  if (n === 1) return 1
+  return nFibonacci(n-1) + nFibonacci(n-2)
 }
 
 // Para esta parte no es necesario utilizar recursión.
@@ -25,7 +33,23 @@ function nFibonacci(n) {
 // size: Devuelve el número de elementos que contiene la queue.
 
 function Queue() {
+  this.__queue__ = []
+  this.tam = 0
+}
 
+Queue.prototype.enqueue = function(dato){
+  this.tam ++
+  this.__queue__.push(dato)
+}
+
+Queue.prototype.dequeue = function(){
+  if(this.tam === 0) return undefined
+  this.tam --
+  return this.__queue__.shift()
+}
+
+Queue.prototype.size = function(){
+  return this.tam
 }
 
 // No modifiquen nada debajo de esta linea
