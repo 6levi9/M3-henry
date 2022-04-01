@@ -11,11 +11,67 @@
 // search: Busca un valor dentro de la lista. Puede recibir un valor o una función. Si no hubiera resultados, devuelve null.
 
 function LinkedList() {
+  this.head = null
+}
+
+
+function Node(value){
+  this.value = value
+  this.next = null
+}
+
+LinkedList.prototype.add = function(info){
+  var node = new Node(info)
+   if(this.head === null){
+    this.head = node
+  } else {
+    var current = this.head;
+    while(current.next){
+      current = current.next
+    }
+    current.next = node;
+  }
 
 }
 
-function Node(value){
+LinkedList.prototype.remove = function(){
+  if (this.head === null) return null
+  if (this.head.next === null){
+    var current = this.head
+    this.head = null
+    return current.value
+  } else {
+    var current = this.head
+    while(current.next.next != null){
+      current = current.next
+    }
+    var data = current.next.value
+    current.next = null
+    return data
+  }
+}
 
+LinkedList.prototype.search = function(arg){
+  if(!this.head) return null;
+
+  var busqueda;
+  if(typeof arg != 'function'){
+    busqueda = function(data){
+      return data === arg;
+    }
+  } else {
+    busqueda = arg;
+  }
+
+  var current = this.head
+  while(current){
+    if(busqueda(current.value)){
+      return current.value
+    } else {
+      current = current.next
+    }
+  }
+  return null
 }
 
 // Hash Table( ver información en: https://es.wikipedia.org/wiki/Tabla_hash)
@@ -31,9 +87,44 @@ function Node(value){
 //    - Retornar dicho valor.
 
 function HashTable() {
-
+  this.numBuckets = 35
+  this.contenedores = []
 }
 
+HashTable.prototype.hash = function(key){
+  var sumaTotal = 0;
+  for (let i = 0; i < key.length; i++){
+    sumaTotal = sumaTotal + key.charCodeAt(i)
+  }
+  return sumaTotal % this.numBuckets
+}
+
+HashTable.prototype.set = function(key, value){
+  if(typeof key != 'string'){
+    throw new TypeError('Keep must be strings')
+  }
+  var posicion = this.hash(key)
+ //if (!this.contenedores[posicion]){
+ // this.contenedores[posicion] = [] es lo mismo que la linea siguiente
+ // }
+  this.contenedores[posicion] = this.contenedores[posicion] || []
+  this.contenedores[posicion].unshift({key: key, value: value})
+}
+
+HashTable.prototype.get = function(key){
+  var posicion = this.hash(key)
+  var subArray = this.contenedores[posicion]
+  for (let i = 0; i < subArray.length; i++){
+    if (subArray[i].key === key){
+      return subArray[i].value
+    }
+  }
+}
+
+HashTable.prototype.hasKey = function(key){
+  if(this.get(key)) return true
+  else return false
+}
 
 // No modifiquen nada debajo de esta linea
 // --------------------------------
