@@ -92,7 +92,7 @@ parseInt("09")//09
 [3]+[3]-[10]//23 A los dos primers arrglos los hace strings y concatena "33"
             //   Despues al "33" lo hace num para hacer la resta
 3>2>1//False 3>2 = true; 2>1 = True; True > True = False
-[] == ![]//True reeplaza tipos de datos hacer que son 00 y da true. Solo en este caso porque es '=='
+[] == ![]//True reeplaza tipos de datos hasta que son 00 y da true. Solo en este caso porque es '=='S
 ```
 
 > Si te quedó alguna duda repasá con [este artículo](http://javascript.info/tutorial/object-conversion).
