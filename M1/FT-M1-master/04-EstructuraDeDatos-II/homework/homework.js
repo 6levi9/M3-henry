@@ -31,7 +31,6 @@ LinkedList.prototype.add = function(info){
     }
     current.next = node;
   }
-
 }
 
 LinkedList.prototype.remove = function(){
