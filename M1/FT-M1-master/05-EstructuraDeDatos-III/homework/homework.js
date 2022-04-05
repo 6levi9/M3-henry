@@ -70,7 +70,10 @@ BinarySearchTree.prototype.breadthFirstForEach = function(cb, arr){
 
   cb(this.value)
 
-  arr.length &&arr.shift().breadthFirstForEach(cb, arr)
+  arr.length && arr.shift().breadthFirstForEach(cb, arr)
+//-------------  
+//    ||
+//if(arr.length)  si no tiene nada, corta la ejecucion. 0 es falso y corta la de arriba
 }
 
 BinarySearchTree.prototype.size = function(){
