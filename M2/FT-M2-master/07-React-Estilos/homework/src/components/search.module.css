@@ -1,0 +1,10 @@
+.bar input{ 
+    background-color: rgba(47, 53, 57, 0.507);
+    border: none;
+}
+
+.button{
+    color: black;
+    background-color: rgb(237, 255, 237);
+    border-radius: 5px;
+}
